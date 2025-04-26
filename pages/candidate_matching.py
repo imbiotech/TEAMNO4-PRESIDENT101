@@ -1,21 +1,18 @@
 import candidate_sorting as cs
 import json
 import os
-
+import random
 
 def read_mySelection():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(current_dir, "MySelection.json")
+    file_path = os.path.join(current_dir, "my_selection.json")
     with open(file_path, "r", encoding="utf-8") as f:
         promise_data = json.load(f)
-        print("promise_data:", promise_data)
         return promise_data
 
 def select_most_matching_candidates(candidates):
     promise_data = cs.call_candidate_sorting()
     mySelection = read_mySelection()
-
-    print("mySelection:", mySelection)
     
     matching_candidates = []
 
@@ -45,3 +42,20 @@ def select_most_matching_candidates(candidates):
             most_frequent_candidates.append(candidate)
 
     return most_frequent_candidates, max_count
+
+def get_random_policy_line(data, candidate_name):
+  """
+  주어진 데이터에서 특정 후보의 한줄 정책을 랜덤하게 가져옵니다.
+
+  Args:
+    data (list): 정책 정보가 담긴 딕셔너리 리스트.
+    candidate_name (str): 한줄 정책을 가져올 후보 이름.
+
+  Returns:
+    str or None: 해당 후보의 랜덤한 한줄 정책. 후보가 없으면 None 반환.
+  """
+  candidate_policies = [item["한줄 정책"] for item in data if item["후보"] == candidate_name]
+  if candidate_policies:
+    return random.choice(candidate_policies)
+  else:
+    return None

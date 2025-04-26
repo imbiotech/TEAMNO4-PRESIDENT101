@@ -7,10 +7,8 @@ def read_promise_json():
     file_path = os.path.join(current_dir, "promise.json")
     with open(file_path, "r", encoding="utf-8") as f:
         promise_data = json.load(f)
-        print("promise_data:", promise_data)
         return promise_data
     
-
 def create_promise_vs_candidate_json(promise_data):
     data = {}
 
@@ -28,7 +26,6 @@ def create_promise_vs_candidate_json(promise_data):
             data[policy_name][direction].append(candidate)
             
     return data
-  
 
 def call_candidate_sorting():
     # promise.json 파일 읽기
@@ -56,7 +53,6 @@ def read_promise_only():
     prinmises = list(set(prinmises))
 
     # 무작위 섞기
-    
     random.shuffle(prinmises)
 
     return prinmises
