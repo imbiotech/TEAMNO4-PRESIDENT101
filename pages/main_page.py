@@ -4,6 +4,7 @@ import os
 import test_page as tp
 import faq_page as faq
 import map_page as mp
+import web_crawling as wc
 
 def youtube_video(youtube_url):
     """YouTube 동영상을 자동 재생 및 자동 재시작 기능과 함께 삽입합니다."""
@@ -70,12 +71,16 @@ else:
     with st.sidebar:
         st.markdown("### 메뉴")
 
+        
         if st.button("나의 성향 Test"):
             st.session_state.page = "나의 성향 Test"
         if st.button("FAQ"):
             st.session_state.page = "FAQ"
         if st.button("실시간 투표"):
             st.session_state.page = "실시간 투표"
+
+        wc.main()
+
 
     # 본문
     if st.session_state.page == "나의 성향 Test":
